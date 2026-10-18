@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTcyber Ltd | Lanarkshire Cyber Security & Compliance</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        
+        :root {
+            --bg-dark: #070a12;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-emerald: #10b981;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: #f8fafc;
+            overflow-x: hidden; 
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .glass-nav { 
+            background: rgba(7, 10, 18, 0.85); 
+            backdrop-filter: blur(16px); 
+            border-bottom: 1px solid rgba(16, 185, 129, 0.15); 
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 40%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .glow-pulse {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+            to { box-shadow: 0 0 22px rgba(16, 185, 129, 0.6); }
+        }
+
+        .faq-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.3s ease-out, padding 0.3s ease; 
+        }
+        
+        .faq-item.active .faq-content { 
+            max-height: 300px; 
+            padding-top: 1rem; 
+        }
+        
+        .faq-item.active svg { 
+            transform: rotate(180deg); 
+            color: #10b981; 
+        }
+
+        .faq-item.active {
+            border-color: rgba(16, 185, 129, 0.4);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .modal-active { 
+            display: flex !important; 
+            animation: fadeIn 0.3s ease-out; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: scale(0.98); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
+    </style>
+</head>
+<body class="selection:bg-emerald-500 selection:text-slate-900">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 top-0 glass-nav h-20">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="cyber101.png" alt="NTcyber Logo" style="height: 200px !important; width: auto; max-height: none !important;">
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-[11px] font-bold text-slate-300 uppercase tracking-[0.2em] mono">
+                <a href="#about" class="hover:text-emerald-400 transition-colors">01. About</a>
+                <a href="#services" class="hover:text-emerald-400 transition-colors">02. Services</a>
+                <a href="#compliance" class="hover:text-emerald-400 transition-colors">03. Compliance</a>
+                <a href="#faq" class="hover:text-emerald-400 transition-colors">04. FAQ</a>
+                <a href="#contact" class="bg-emerald-500 text-slate-950 font-black px-5 py-2.5 rounded-lg hover:bg-emerald-400 transition-colors">Get In Touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="relative pt-44 pb-32 px-6 overflow-hidden border-b border-emerald-500/10">
+            <div class="absolute inset-0 cyber-grid opacity-75"></div>
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-emerald-500/10 blur-[140px] pointer-events-none rounded-full"></div>
+
+            <div class="max-w-7xl mx-auto relative z-10 text-center md:text-left">
+                <div class="inline-flex items-center space-x-3 mono text-emerald-400 text-xs font-bold mb-8 tracking-widest bg-emerald-950/60 px-4 py-2 rounded-full border border-emerald-500/30 uppercase backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Lanarkshire // Cyber Audit Specialists</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-black text-white leading-[1.05] mb-8 text-gradient tracking-tight">
+                    Secure. Comply.<br>Succeed.
+                </h1>
+                
+                <p class="text-slate-400 text-xl md:text-2xl max-w-2xl mb-12 font-normal leading-relaxed">
+                    Expert cybersecurity audits and certification readiness for Scottish SMBs. Nearly a decade of infrastructure experience at your service.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
+                    <a href="#services" class="bg-emerald-500 text-slate-950 font-black px-10 py-5 rounded-xl hover:bg-emerald-400 transition-all uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]">View Packages</a>
+                    <a href="#contact" class="glass-card border-slate-700/80 text-white font-bold px-10 py-5 rounded-xl hover:bg-slate-800/60 hover:border-emerald-500/50 transition-all uppercase tracking-widest text-sm">Start Engagement</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-32 relative px-6 border-b border-slate-800/50">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-xs font-black text-emerald-400 uppercase tracking-[0.4em] mb-4 mono">The NTcyber Story</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">Rooted in Technical Excellence since 2016.</h3>
+                    <div class="space-y-6 text-slate-400 text-lg leading-relaxed font-normal">
+                        <p>Based in Lanarkshire, NTcyber is built on a foundation of nearly 10 years in network and security infrastructure. Starting as an independent networking specialist in 2016, we evolved in 2020 to meet the growing cybersecurity crisis facing small businesses.</p>
+                        <p>We realized that modern businesses don't just need software—they need human-led strategy. We bridge the gap between complex enterprise standards and local business reality.</p>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-[2.5rem] p-10 md:p-12 text-white relative overflow-hidden shadow-2xl border-emerald-500/20">
+                    <div class="absolute top-0 right-0 p-8 opacity-5 text-9xl font-black italic pointer-events-none select-none">NT</div>
+                    <div class="space-y-8 relative z-10">
+                        <div class="flex items-center space-x-6">
+                            <div class="w-16 h-16 bg-emerald-500 text-slate-950 rounded-2xl flex items-center justify-center text-xl font-black mono shadow-[0_0_15px_rgba(16,185,129,0.4)]">2016</div>
+                            <div>
+                                <p class="font-bold text-lg uppercase tracking-tight text-white">Networking Roots</p>
+                                <p class="text-xs text-emerald-400 font-bold uppercase tracking-widest mono">Inception</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-6 border-t border-slate-800/80 pt-8">
+                            <div class="w-16 h-16 bg-emerald-500 text-slate-950 rounded-2xl flex items-center justify-center text-xl font-black mono shadow-[0_0_15px_rgba(16,185,129,0.4)]">2020</div>
+                            <div>
+                                <p class="font-bold text-lg uppercase tracking-tight text-white">Cyber Evolution</p>
+                                <p class="text-xs text-emerald-400 font-bold uppercase tracking-widest mono">NTcyber Brand Launch</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-32 relative px-6 border-b border-slate-800/50">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20">
+                    <h2 class="text-xs font-black text-emerald-400 uppercase tracking-[0.4em] mb-3 mono">Audit Architecture</h2>
+                    <h3 class="text-4xl md:text-5xl font-black text-white uppercase tracking-tight mb-6">Strategic Security Packages</h3>
+                    <div class="w-20 h-1 bg-emerald-500 mx-auto rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8 mb-16 items-stretch">
+                    <!-- ESSENTIALS -->
+                    <div class="glass-card p-10 rounded-[2rem] flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-2xl font-black mb-1 text-white tracking-tight">THE ESSENTIALS</h4>
+                            <p class="text-[11px] text-emerald-400 mono font-bold uppercase tracking-widest mb-8">Security Foundation</p>
+                            <ul class="space-y-4 text-sm font-medium text-slate-300 mb-10">
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> 4 Core Security Policies</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> External Vulnerability Scan</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> Email Hardening (DMARC/SPF)</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> Firewall Rule-base Audit</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="block text-center border border-slate-700 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:border-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-400 transition-all">Inquire</a>
+                    </div>
+                    
+                    <!-- PROFESSIONAL -->
+                    <div class="glass-card p-10 rounded-[2rem] border-emerald-500/60 relative flex flex-col justify-between shadow-[0_0_30px_rgba(16,185,129,0.15)] scale-105 z-10 bg-slate-900/90">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 text-[10px] font-black px-6 py-1.5 rounded-full uppercase tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.5)]">Most Requested</div>
+                        <div>
+                            <h4 class="text-2xl font-black mb-1 text-white tracking-tight">THE PROFESSIONAL</h4>
+                            <p class="text-[11px] text-emerald-400 mono font-bold uppercase tracking-widest mb-8">Compliance Ready</p>
+                            <ul class="space-y-4 text-sm font-medium text-slate-200 mb-10">
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> 8 Key Security Policies</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> Pre-Cyber Essentials Audit</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> Employee Awareness Briefing</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> Supply Chain Risk Review</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="block text-center bg-emerald-500 text-slate-950 py-4 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-emerald-400 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)]">Secure This Plan</a>
+                    </div>
+
+                    <!-- ENTERPRISE -->
+                    <div class="glass-card p-10 rounded-[2rem] flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-2xl font-black mb-1 text-white tracking-tight">THE ENTERPRISE</h4>
+                            <p class="text-[11px] text-emerald-400 mono font-bold uppercase tracking-widest mb-8">Total Governance</p>
+                            <ul class="space-y-4 text-sm font-medium text-slate-300 mb-10">
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> 12+ Advanced Security Policies</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> Cyber Essentials Plus Readiness</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> Disaster Recovery Playbook</li>
+                                <li class="flex items-center"><span class="text-emerald-400 mr-3 text-lg">✔</span> Quarterly Strategic Reviews</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="block text-center border border-slate-700 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:border-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-400 transition-all">Contact Sales</a>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+                    <div class="glass-card p-6 rounded-2xl flex items-center space-x-5">
+                        <div class="text-3xl p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20">🏢</div>
+                        <div>
+                            <h5 class="font-bold text-base text-white">On-Site Physical Audits</h5>
+                            <p class="text-[11px] text-emerald-400/80 uppercase font-bold tracking-wider mono mt-0.5">Hardware & Infrastructure verification</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl flex items-center space-x-5">
+                        <div class="text-3xl p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20">✍️</div>
+                        <div>
+                            <h5 class="font-bold text-base text-white">Bespoke Policy Drafting</h5>
+                            <p class="text-[11px] text-emerald-400/80 uppercase font-bold tracking-wider mono mt-0.5">Custom requirements for Insurance/Law</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPLIANCE SECTION -->
+        <section id="compliance" class="py-32 relative px-6 border-b border-slate-800/50">
+            <div class="max-w-7xl mx-auto glass-card rounded-[3rem] p-12 md:p-20 text-white relative overflow-hidden border-emerald-500/20 shadow-2xl">
+                <div class="absolute inset-0 cyber-grid opacity-20"></div>
+                <div class="relative z-10 text-center">
+                    <h2 class="text-emerald-400 mono text-xs font-bold uppercase tracking-[0.4em] mb-4">Framework Alignment</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold mb-12 tracking-tight">Boost Compliance with Strategic Auditing</h3>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div class="glass-card p-6 rounded-2xl text-center font-bold text-xs tracking-[0.2em] uppercase text-emerald-300 border-slate-700/60 hover:border-emerald-500/50 transition-all">Cyber Essentials</div>
+                        <div class="glass-card p-6 rounded-2xl text-center font-bold text-xs tracking-[0.2em] uppercase text-emerald-300 border-slate-700/60 hover:border-emerald-500/50 transition-all">ISO 27001</div>
+                        <div class="glass-card p-6 rounded-2xl text-center font-bold text-xs tracking-[0.2em] uppercase text-emerald-300 border-slate-700/60 hover:border-emerald-500/50 transition-all">PCI DSS</div>
+                        <div class="glass-card p-6 rounded-2xl text-center font-bold text-xs tracking-[0.2em] uppercase text-emerald-300 border-slate-700/60 hover:border-emerald-500/50 transition-all">GDPR</div>
+                        <div class="glass-card p-6 rounded-2xl text-center font-bold text-xs tracking-[0.2em] uppercase text-emerald-300 border-slate-700/60 hover:border-emerald-500/50 transition-all">SOC 2</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="py-32 relative px-6 border-b border-slate-800/50">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-xs font-black text-emerald-400 uppercase tracking-[0.4em] mb-3 mono">Knowledge Base</h2>
+                    <h3 class="text-4xl font-black text-white uppercase tracking-tight">Frequently Asked <span class="text-emerald-400">Questions</span></h3>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-slate-800" onclick="this.classList.toggle('active')">
+                        <div class="flex justify-between items-center font-bold text-lg text-white">
+                            <span>How long does a typical cyber audit take?</span>
+                            <svg class="w-5 h-5 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke="currentColor"></path></svg>
+                        </div>
+                        <div class="faq-content text-sm text-slate-400 leading-relaxed">
+                            For most small businesses, the initial audit takes 1-3 business days. This includes policy review, technical scans, and an on-site visit if required. We then deliver the full roadmap within 48 hours.
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-slate-800" onclick="this.classList.toggle('active')">
+                        <div class="flex justify-between items-center font-bold text-lg text-white">
+                            <span>Does an audit guarantee we won't be hacked?</span>
+                            <svg class="w-5 h-5 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke="currentColor"></path></svg>
+                        </div>
+                        <div class="faq-content text-sm text-slate-400 leading-relaxed">
+                            No one can guarantee 100% security, but our audits reduce your attack surface by up to 80%. We focus on stopping the "low hanging fruit" attacks that target 99% of Scottish SMBs.
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-slate-800" onclick="this.classList.toggle('active')">
+                        <div class="flex justify-between items-center font-bold text-lg text-white">
+                            <span>Will this satisfy our Cyber Insurance requirements?</span>
+                            <svg class="w-5 h-5 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke="currentColor"></path></svg>
+                        </div>
+                        <div class="faq-content text-sm text-slate-400 leading-relaxed">
+                            Yes. Most insurers now require proof of professional security oversight. Our reports provide the exact technical documentation they ask for during the application or renewal process.
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-slate-800" onclick="this.classList.toggle('active')">
+                        <div class="flex justify-between items-center font-bold text-lg text-white">
+                            <span>What is the difference between an audit and a scan?</span>
+                            <svg class="w-5 h-5 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke="currentColor"></path></svg>
+                        </div>
+                        <div class="faq-content text-sm text-slate-400 leading-relaxed">
+                            A scan is automated and looks for known bugs. An audit is human-led; we look at who has keys to your building, how your staff handle passwords, and if your "secure" backups actually work.
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-slate-800" onclick="this.classList.toggle('active')">
+                        <div class="flex justify-between items-center font-bold text-lg text-white">
+                            <span>Do you help with Cyber Essentials certification?</span>
+                            <svg class="w-5 h-5 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke="currentColor"></path></svg>
+                        </div>
+                        <div class="faq-content text-sm text-slate-400 leading-relaxed">
+                            Absolutely. We act as your pre-submission consultants. We find the gaps that would cause you to fail, fix them, and ensure you pass the official assessment on the first attempt.
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-slate-800" onclick="this.classList.toggle('active')">
+                        <div class="flex justify-between items-center font-bold text-lg text-white">
+                            <span>Is my business too small for an audit?</span>
+                            <svg class="w-5 h-5 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke="currentColor"></path></svg>
+                        </div>
+                        <div class="faq-content text-sm text-slate-400 leading-relaxed">
+                            If you handle customer data or take payments, you aren't too small. Cyber criminals target small businesses precisely because they often lack professional security oversight.
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-slate-800" onclick="this.classList.toggle('active')">
+                        <div class="flex justify-between items-center font-bold text-lg text-white">
+                            <span>Do we need to buy new hardware after an audit?</span>
+                            <svg class="w-5 h-5 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke="currentColor"></path></svg>
+                        </div>
+                        <div class="faq-content text-sm text-slate-400 leading-relaxed">
+                            Not necessarily. Often, we find that existing hardware is simply misconfigured. Our goal is to secure your current environment first before recommending capital expenditure.
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-card rounded-2xl p-6 cursor-pointer border-slate-800" onclick="this.classList.toggle('active')">
+                        <div class="flex justify-between items-center font-bold text-lg text-white">
+                            <span>How often should we have an audit?</span>
+                            <svg class="w-5 h-5 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke="currentColor"></path></svg>
+                        </div>
+                        <div class="faq-content text-sm text-slate-400 leading-relaxed">
+                            We recommend a full audit annually, with smaller "health checks" every 6 months or whenever you make significant changes to your IT infrastructure.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-32 relative px-6">
+            <div class="max-w-4xl mx-auto glass-card rounded-[3rem] p-10 md:p-16 border-emerald-500/20 shadow-2xl relative overflow-hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-xs font-black text-emerald-400 uppercase tracking-[0.4em] mb-3 mono">Initiate Engagement</h2>
+                    <h3 class="text-4xl font-bold mb-3 text-white">Start Your Security Audit.</h3>
+                    <p class="text-slate-400 font-normal">Lanarkshire's dedicated cybersecurity consultancy.</p>
+                </div>
+                
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6 text-left">
+                    <input type="hidden" name="access_key" value="ecaaac23-9d48-412b-ad39-d1922902ce36">
+                    <input type="hidden" name="from_name" value="NTcyber Web Inquiry">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <label class="text-[11px] font-black text-emerald-400 uppercase tracking-widest mb-2 ml-1 mono">Full Name</label>
+                            <input type="text" name="name" placeholder="Enter name" required class="w-full p-5 bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 rounded-xl outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-[11px] font-black text-emerald-400 uppercase tracking-widest mb-2 ml-1 mono">Business Email</label>
+                            <input type="email" name="email" placeholder="email@company.com" required class="w-full p-5 bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 rounded-xl outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all">
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <label class="text-[11px] font-black text-emerald-400 uppercase tracking-widest mb-2 ml-1 mono">Message</label>
+                        <textarea name="message" rows="5" placeholder="How can we help?" required class="w-full p-5 bg-slate-900/80 border border-slate-700/80 text-white placeholder-slate-500 rounded-xl outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-500 text-slate-950 font-black py-5 rounded-xl hover:bg-emerald-400 transition-all uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]">Submit Inquiry</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 py-12 px-6 border-t border-slate-800 text-center">
+        <div class="max-w-7xl mx-auto text-[11px] font-bold text-slate-500 uppercase tracking-widest mono">
+            <p>© 2026 NTCYBER_LTD // LANARKSHIRE_SCOTLAND</p>
+            <div class="mt-4 flex justify-center gap-8">
+                <button onclick="toggleModal('privacy-modal')" class="hover:text-emerald-400 transition-colors">Privacy</button>
+                <button onclick="toggleModal('terms-modal')" class="hover:text-emerald-400 transition-colors">Terms</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="privacy-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+        <div class="glass-card bg-slate-900 w-full max-w-2xl rounded-3xl p-10 relative border-emerald-500/30">
+            <button onclick="toggleModal('privacy-modal')" class="absolute top-6 right-6 text-2xl text-slate-400 hover:text-emerald-400">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-white">Privacy Policy</h2>
+            <p class="text-slate-400 leading-relaxed">All data is handled strictly according to UK GDPR standards.</p>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
+        <div class="glass-card bg-slate-900 w-full max-w-2xl rounded-3xl p-10 relative border-emerald-500/30">
+            <button onclick="toggleModal('terms-modal')" class="absolute top-6 right-6 text-2xl text-slate-400 hover:text-emerald-400">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-white">Terms of Service</h2>
+            <p class="text-slate-400 leading-relaxed">Services provided by NTcyber Ltd are governed strictly under UK jurisdiction.</p>
+        </div>
+    </div>
+
+    <script>
+        // 1. Modal Toggle Logic
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('modal-active');
+            document.body.style.overflow = modal.classList.contains('modal-active') ? 'hidden' : 'auto';
+        }
+
+        // 2. Clear Form on Page Load/Return
+        window.onpageshow = function(event) {
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.reset();
+            }
+        };
+    </script>
+</body>
+</html>
