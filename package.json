@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i src/input.css -o public/tailwind.css --minify"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/nisbet6098/ntcyber-site/issues"
   },
-  "homepage": "https://github.com/nisbet6098/ntcyber-site#readme"
+  "homepage": "https://github.com/nisbet6098/ntcyber-site#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
 }
